@@ -1,3 +1,8 @@
+/*******************
+author: Saber Sayeed
+date: 5 april 2016
+*******************/
+
 #include "systick.h"
 
 void main(void)
