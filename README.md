@@ -1,1 +1,1 @@
-This repository is for beginners to learn coding without the CMSIS library
+STM32F401xE development without CMSIS library
