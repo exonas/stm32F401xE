@@ -1,23 +1,24 @@
 /*******************
 author: Saber Sayeed
-date: 5 april 2016
+email: saber@exonas.org
+date: 9 april 2016
 *******************/
 
 #include "interrupt.h"
 
 void main(void)
 {
-	RCC->AHB1ENR |= GPIOAC_ENABLE;
-	RCC->APB2ENR |= SYSCFG_ENABLE;
-	GPIOA->MODER |= GPIO_MODER_PIN5;
-	SYSCFG->EXTICR[3] |= SYSCFG_EXTICR4_PIN13;
-	EXTI->IMR |= EXTI_IMR_PIN13;
-	EXTI->RTSR |= EXTI_RTSR_PIN1;
-	NVIC->ISER[1] |= IRQ_40;
+	*RCC_AHB1ENR |= GPIOA_ENABLE | GPIOC_ENABLE;
+	*RCC_APB2ENR |= SYSCFG_ENABLE;
+	*GPIOA_MODER |= GPIOx_MODER_PIN5;
+	*SYSCFG_EXTICR4 |= SYSCFG_EXTICR4_PIN13;
+	*EXTI_IMR |= EXTI_IMR_PIN13;
+	*EXTI_RTSR |= EXTI_RTSR_PIN1;
+	*NVIC_ISER2 |= IRQ_40;
 }
 
 void exti_line13_handler(void)
 {
-	EXTI->PR |= EXTI_PR_PIN13;
-	GPIOA->ODR ^= GPIO_ODR_PIN5;
+	*EXTI_PR |= EXTI_PR_PIN13;
+	*GPIOA_ODR ^= GPIOx_ODR_PIN5;
 }
